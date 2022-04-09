@@ -1,5 +1,6 @@
 Description: >
-    Mohamed Elsayed  / FWD Udacity (ID:782943564937)
+    Mohamed Elsayed ::: FWD Udacity (ID:782943564937) ::: Seconde Project
+    Servers Teamplate
 
 Parameters:
 
@@ -8,6 +9,12 @@ Parameters:
         Type: String
 
 Resources:
+
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    # DeletionPolicy: Retain
+    Properties:
+      BucketName: s3-782943564937
   LBSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -25,10 +32,6 @@ Resources:
         FromPort: 80
         ToPort: 80
         CidrIp: 0.0.0.0/0
-      # - IpProtocol: tcp
-      #   FromPort: 8080
-      #   ToPort: 8080
-      #   CidrIp: 0.0.0.0/0
   WebServerSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -41,10 +44,6 @@ Resources:
         FromPort: 80
         ToPort: 80
         CidrIp: 0.0.0.0/0
-      # - IpProtocol: tcp
-      #   FromPort: 22
-      #   ToPort: 22
-      #   CidrIp: 0.0.0.0/0
       SecurityGroupEgress:
       - IpProtocol: tcp
         FromPort: 0
@@ -61,16 +60,13 @@ Resources:
           sudo systemctl start apache2.service
           cd /var/www/html
           sudo chmod 777 index.html
-          sudo echo "!*** WELCOME To Udagram ***!" \ > index.html
-          sudo echo "Mohamed Elsayed ::: FWD Udacity (ID:782943564937)" \ >> index.html
-          sudo echo "FWD Udacity 2nd Project Web Server Up and Running!" \ >> index.html          
-          # sudo echo "Listen 8080" >> /etc/apache2/ports.conf
-          # sudo systemctl stop apache2.service
-          # sudo systemctl start apache2.service
-      # ToDo: AMI ID of Ubuntu Linux machine. Too get one, try creating a VM from the web console. 
+          sudo echo "!*** WELCOME To Udagram ***!" \
+          "FWD Udacity ::: Mohamed Elsayed (ID:782943564937)" \
+          "FWD Udacity ::: 2nd Project Web Server Up and Running!" > index.html 
+          # sudo echo "!*** WELCOME To Udagram ***!" \ > index.html
+          # sudo echo "FWD Udacity ::: Mohamed Elsayed (ID:782943564937)" \ >> index.html
+          # sudo echo "FWD Udacity ::: 2nd Project Web Server Up and Running!" \ >> index.html          
       ImageId: ami-0d73480446600f555
-      # ToDo: Change the key-pair name, as applicable to you. 
-      KeyName: UbKey
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: t2.medium
@@ -134,4 +130,14 @@ Resources:
       UnhealthyThresholdCount: 5
       VpcId: 
         Fn::ImportValue:
-          Fn::Sub: "${EnvironmentName}-VPCID"      
+          Fn::Sub: "${EnvironmentName}-VPCID"
+
+Outputs: 
+
+    LoadBalancerDNSName:
+      Description: The DNSName of the load balancer
+      Value: !GetAtt WebAppLB.DNSName
+      Value : !Join [ "", [ "http://", !GetAtt WebAppLB.DNSName ]]
+      
+
+          
