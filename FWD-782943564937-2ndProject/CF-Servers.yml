@@ -10,11 +10,6 @@ Parameters:
 
 Resources:
 
-  S3Bucket:
-    Type: 'AWS::S3::Bucket'
-    # DeletionPolicy: Retain
-    Properties:
-      BucketName: s3-782943564937
   LBSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -59,13 +54,10 @@ Resources:
           sudo apt-get install apache2 -y
           sudo systemctl start apache2.service
           cd /var/www/html
-          sudo chmod 777 index.html
-          sudo echo "!*** WELCOME To Udagram ***!" \
-          "FWD Udacity ::: Mohamed Elsayed (ID:782943564937)" \
-          "FWD Udacity ::: 2nd Project Web Server Up and Running!" > index.html 
-          # sudo echo "!*** WELCOME To Udagram ***!" \ > index.html
-          # sudo echo "FWD Udacity ::: Mohamed Elsayed (ID:782943564937)" \ >> index.html
-          # sudo echo "FWD Udacity ::: 2nd Project Web Server Up and Running!" \ >> index.html          
+          sudo chmod 777 index.html 
+          sudo echo "*** WELCOME To Udagram ***" \ > index.html
+          sudo echo " ::: FWD Udacity ::: 2nd Project Web Server Up and Running " \ >> index.html
+          sudo echo " ::: Mohamed Elsayed (ID:782943564937)" \ >> index.html          
       ImageId: ami-0d73480446600f555
       SecurityGroups:
       - Ref: WebServerSecGroup
@@ -139,5 +131,3 @@ Outputs:
       Value: !GetAtt WebAppLB.DNSName
       Value : !Join [ "", [ "http://", !GetAtt WebAppLB.DNSName ]]
       
-
-          
