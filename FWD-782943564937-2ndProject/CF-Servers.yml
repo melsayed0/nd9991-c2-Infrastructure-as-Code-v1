@@ -61,7 +61,7 @@ Resources:
       ImageId: ami-0d73480446600f555
       SecurityGroups:
       - Ref: WebServerSecGroup
-      InstanceType: t2.medium
+      InstanceType: t3.medium
       BlockDeviceMappings:
       - DeviceName: /dev/xvda
         Ebs:

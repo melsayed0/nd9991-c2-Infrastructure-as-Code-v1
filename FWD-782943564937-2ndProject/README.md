@@ -1,6 +1,12 @@
 
 
 
+For the review requirment:
+I have added the below screenshoots which refelct the required change :
+    1- EC2 Type Changed to t3.medium.png
+    2- Web services is working fine.png
+
+
 Table of content :
 
 1- Submitter information.
@@ -8,14 +14,17 @@ Table of content :
 3- Folder contents overview.
 4- How to run the Project material?
 
+For the review requirments:
+I have added the below screenshoots which refelct the required change :
+
 
 # 1- Submitter information:
 
     Mohamed Elsayed (ID:782943564937) / FWD Udacity 2nd Project.
 
-# 2- URL for the project dummy Web page:
+# 2- URL for the project dummy Web page: 
 
-    http://serve-webap-1xo1tfaqdqzxh-1432457158.us-east-1.elb.amazonaws.com/
+    http://serve-webap-1g0pb1qp3x5ba-930863025.us-east-1.elb.amazonaws.com/
 
 # 3- Folder contents overview :
 
